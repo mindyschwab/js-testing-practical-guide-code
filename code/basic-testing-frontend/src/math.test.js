@@ -35,6 +35,36 @@ it('should summarize all number values in an array', () => {
     // if the result is what is expected, the test will pass
 });
 
+// Testing things that should not happen
+it('should yield NaN if one of the values is not a number', () => {
+    // Arrange phase
+    const inputs = [1, 2, 'invalid'];
+    // Act phase
+    const result = add(inputs);
+    // Assert phase
+    expect(result).toBeNaN();
+});
+// right now, this test fails because the add function does not check if the values are numbers.  It doesn't perform as expected
+
+
+// Testing things that should not happen
+it('should yield a correct sum if an array of numeric string values is provided', () => {
+    const inputs = ['1', '2', '3'];
+
+    const result = add(inputs);
+
+    // started with the expected result from above and added a plus sign in front of curValue to convert it to a number
+    const expectedResult = numbers.reduce(
+        (prevValue, curValue) => prevValue + + curValue,
+        0
+    );
+    expect(result).toBe(expectedResult);
+});
+// right now, this test fails because the add function does not check if the values are numbers.  It doesn't perform as expected
+// updated the add function to convert the values to numbers before adding them together, now the test passes   
+
+
+// ********** NOTES **********
 // all tests are executed when running npm test - executes the test runner
 //  Results from terminal 
     //  RUN  v0.9.0 / Users / mindy / code / JS - Unit - Testing_Udemy / js - testing - practical - guide - code / code / basic - testing - frontend
@@ -70,3 +100,8 @@ it('should summarize all number values in an array', () => {
     // Test Files  1 failed(1)
     //     Tests  1 failed(1)
     //     Time  4.33s(in thread 15ms, 28887.96 %)
+
+
+
+    // keep tests as simple as possible, everyone should be able to understand them
+    // typically, a unit will have more than 1 test
